@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 300px;
+            height: 30px;
+            background-color: #666;
+            position: relative;
+            overflow: hidden;
+            margin: 50px 0;
+        }
+        #div2{
+            width: 60px;
+            height: 30px;
+            position: absolute;
+            background-color: red;
+            left: 0;
+            top: 0;
+        }
+        #div3{
+            width: 300px;
+            height: 10px;
+            background-color: #666;
+            position: relative;
+            overflow: hidden;
+        }
+        #div4{
+            width: 60px;
+            height: 10px;
+            position: absolute;
+            background-color: pink;
+            left: 240px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<audio id="a1" src="http://localhost:8000/sources/%E5%B0%8F%E6%A3%8B%E7%AB%A5.mp3" controls></audio>
+<br>
+<button id="play">播放</button>
+<button id="allTime">00:00:00</button>
+<button id="now">00:00:00</button>
+<button id="muted">静音</button>
+<button id="pingmu">全屏</button>
+<div id="div1">
+    <div id="div2"></div>
+</div>
+<div id="div3">
+    <div id="div4"></div>
+</div>
+<script>
+    window.onload = function () {
+        var now = document.getElementById('now')
+        var play = document.getElementById('play')
+        var allTime = document.getElementById('allTime')
+        var muted = document.getElementById('muted')
+        var div1 = document.getElementById('div1')
+        var div2 = document.getElementById('div2')
+        var div3 = document.getElementById('div3')
+        var div4 = document.getElementById('div4')
+        var muted = document.getElementById('muted')
+        var oa = document.getElementById('a1')
+        var timer = null
+        play.addEventListener('click', function() {
+            if (oa.paused) {
+                oa.play()
+                nowTime()
+                timer = setInterval(nowTime, 1000)
+                this.innerHTML = '暂停'
+            } else {
+                oa.pause()
+                this.innerHTML = '播放'
+                clearInterval(timer)
+            }
+        })
+        allTime.innerHTML = changeTime(oa.duration)
+        muted.addEventListener('click', function () {
+            if(oa.muted) {
+                oa.volume = 1
+                this.innerHTML = '静音'
+                oa.muted = false
+            } else {
+                oa.volume = 0
+                this.innerHTML = '取消静音'
+                oa.muted = true
+            }
+        })
+        function changeTime(time) {
+            time = parseInt(time)
+            var iH = toZero(Math.floor(time/3600))
+            var iM = toZero(Math.floor(time%3600/60))
+            var iS = toZero(Math.floor(time%60))
+            return iH + ':' + iM + ':' + iS
+        }
+        function toZero(iNum) {
+            if(iNum < 10) {
+                return '0'+ iNum
+            }else {
+                return '' + iNum
+            }
+        }
+        function nowTime() {
+            now.innerHTML = changeTime(oa.currentTime)
+            var scale = oa.currentTime/oa.duration
+            div2.style.left = scale * 240 + 'px'
+        }
+        div2.onmousedown =  function (ev) {
+            var disX = ev.clientX - div2.offsetLeft
+            document.onmousemove = function (ev) {
+                var L = ev.clientX - disX
+                if(L < 0){
+                    L = 0
+                } else if (L > div1.offsetWidth - div2.offsetWidth) {
+                    L = div1.offsetWidth - div2.offsetWidth
+                }
+                div2.style.left = L + 'px'
+                var scale = L /(div1.offsetWidth - div2.offsetWidth)
+                oa.currentTime = scale * oa.duration
+                nowTime()
+            }
+            
+            document.onmouseup = function () {
+                this.onmousemove = null
+                this.onmouseup = null
+            }
+        }
+
+        div4.onmousedown =  function (ev) {
+            var disX = ev.clientX - div4.offsetLeft
+            document.onmousemove = function (ev) {
+                var L = ev.clientX - disX
+                if(L < 0){
+                    L = 0
+                } else if (L > div3.offsetWidth - div4.offsetWidth) {
+                    L = div3.offsetWidth - div4.offsetWidth
+                }
+                div4.style.left = L + 'px'
+                var scale = L /(div3.offsetWidth - div4.offsetWidth)
+                oa.volume = scale
+            }
+            document.onmouseup = function () {
+                this.onmousemove = null
+                this.onmouseup = null
+            }
+        }
+    }
+</script>
+</body>
+</html>

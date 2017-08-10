@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			*{
+				padding: 0;margin: 0;
+			}
+			.player{
+				width: 100%;
+				height: 45px;
+				background-color: #2d2d2d;
+				border-top: 1px solid #4a4a4a;
+				position: fixed;
+				bottom: 50%;
+			}
+			.slider{
+				width: 500px;
+				height: 10px;
+				background-color: #181818;
+				border-top: 1px solid #0b0b0b;
+				border-bottom: 1px solid #4a4a4a;
+				border-radius: 6px;
+				margin: 20px auto ;
+				position: relative;
+			}
+			.slider > .buffer{
+				width: 60%;
+				height: 100%;
+				background-color: #535353;
+				border-radius: 6px;
+				position: absolute;
+			}
+			.slider > .precessor{
+				width: 8px;
+				height: 100%;
+				background-color: #c70c0c;
+				border-radius: 6px;
+				position: absolute;
+			}.slider > .controller{
+				position: absolute;
+				width: 6px;
+				height: 6px;
+				border: 10px solid #f3f3f6;
+				background-color: rgba(255,255,255,0);
+				-webkit-border-radius:50%;
+				-moz-border-radius:50%;
+				top: -8px;
+				left: -8px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="player">
+			<div class="slider">
+				<div class="buffer"></div>
+				<div class="proceddor"></div><div class="controller"></div>
+			</div>
+		</div>
+		<script>
+			var slider = document.querySelector(".slider");
+			var buffer = document.querySelector(".buffer");
+			var step = 0.05;
+			var timer = window.setInterval(function () {
+				// body...
+			var sw = slider.offsetWidth;
+			var w = buffer.offsetWidth;
+			buffer.style.width = w + sw * step +"px";
+			if (w + sw * step == sw) {
+				window.clearInterval(timer)
+			}
+			}, 100);
+			var processor = document.querySelector(".processor")
+			var controller = document.querySelector(".controller")
+			window.addEventListener("mousedown",dragDrapHandler)
+			window.addEventListener("mouseup",dragDrapHandler)
+			slider.addEventListener("mouseup",dragDrapHandler)
+			function dragDrapHandler(event) {
+				// body...
+				switch(event.type){
+					case "mousedown":
+					var tx = event.clientX - slider.offsetWidth;
+					var halfW = controller.offsetWidth >>1;
+						break;
+					case "mousemove":
+					controller.style.left = tx + halfW +"px";
+					processer.style.width =tx + halfW*3 +"px";
+						break;
+					case "mouseup":
+						break;
+				}
+			}
+		</script>
+	</body>
+</html>

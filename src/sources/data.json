@@ -1,0 +1,36 @@
+{
+    "tracks": [{
+        "name": "小棋童",
+        "artists": [{
+            "name": "HITA"
+        }],
+        "album": {
+            "name": "国学唱歌集",
+            "picUrl": "http://p3.music.126.net/SR9eFEjRB0NsscxN7-fHMw==/3344714372906000.jpg"
+        },
+        "duration": 219000,
+        "mp3Url": "../sources/小棋童.mp3"
+    }, {
+        "name": "元日 ",
+        "artists": [{
+            "name": "清弄"
+        }],
+        "album": {
+            "name": "热门华语261",
+            "picUrl": "http://p4.music.126.net/ly2FJHh5-lYMdC3NZxvavQ==/7714173580661848.jpg"
+        },
+        "duration": 109000,
+        "mp3Url": "http://m2.music.126.net/jwwZVlWJ78HEarft42uKUQ==/7906588115920636.mp3"
+    }, {
+        "name": "青龙·花木苍苍",
+        "artists": [{
+            "name": "五色石南叶"
+        }],
+        "album": {
+            "name": "热门华语234",
+            "picUrl": "http://p4.music.126.net/tHAfnugCElS93EDp5cHLIw==/8909342719897560.jpg"
+        },
+        "duration": 295575,
+        "mp3Url": "http://m2.music.126.net/rnq_W32zFX_utQbBhE0xkg==/8934631487358481.mp3"
+    }]
+}

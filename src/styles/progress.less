@@ -1,0 +1,39 @@
+.component-progressbar {
+    .progressbar {
+        width: 90%;
+        height: 10px;
+        background-color: #fff;
+        margin: 10px auto;
+        left: 0;
+        display: flex;
+        position: relative;
+        border-radius: 5px;
+        overflow: visible;
+        align-self: center;
+        cursor: pointer;
+        .progress {
+            width: 0;
+            height: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            cursor: pointer;
+            background-color: #99f;
+            margin: auto 0;
+            border-radius: 5px;
+        }
+        &:hover .progress {
+            background-color: #6d6;
+        }
+        .progress-button {
+            width: 10px;
+            height: 10px;
+            display: block;
+            left: 5px;
+            background-color: #cac;
+            border-radius: 5px;
+            position: relative;
+            float: right;
+        }
+    }
+}
