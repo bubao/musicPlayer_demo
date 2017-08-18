@@ -61,4 +61,5 @@ export default Progress;
 /**
  * 参考源码
  * https://github.com/disoul/electron-cloud-music/blob/0336c509f44cdc88882a32f2f15938ff3f5b0161/app/components/Player.jsx
+ * 可调节的进度条
  */
