@@ -1,31 +1,5 @@
-# 开发笔记
+# 慕课网学习Demo——音乐播放器
 
-## react-jplayer
+> 2017年08月08日
 
-这个模块是react版本的jplayer，试了下 yarn 安装不了
-
-```
-npm install --save react-jplayer
-```
-例子如下：
-
-```js
-import React from 'react';
-import { connect } from 'react-redux';
-import { actions } from 'react-jplayer';
-
-/* jPlayers is automatically injected into the state if you set followed the setup correctly.
-You can also access your other state properties like usual. */
-
-const mapStateToProps = state => ({
-  showRemainingDuration: state.jPlayers.AudioPlayer.showRemainingDuration,
-});
-
-const SomeRandomFunc = ({ showRemainingDuration, dispatch }) =>
-  <div onClick={() => dispatch(actions.setOption('AudioPlayer', 'showRemainingDuration', !showRemainingDuration))}>
-    Toggle Duration
-  </div>;
-
-export default connect(mapStateToProps)(SomeRandomFunc);
-
-```
+这个项目是学习慕课网的[《使用React构建一款音乐播放器》](http://www.imooc.com/learn/868)，上网找了下有现成的[Demo](http://blog.csdn.net/lecepin/article/details/54865083)，就抄过来改了。原来是`React.createClass`，改成**无状态组件**和**类组件**还是有很多坑的。加入了音量控制，不过还未美化。
